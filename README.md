@@ -1,6 +1,8 @@
 # YOLO-Planar-SLAM
 This is a RGBD SLAM system developed based on [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2). I tried to develop a SLAM system that can work in both dynamic environment and low-texture environment. This system use [YOLO-fastest](https://github.com/dog-qiuqiu/Yolo-Fastest) to remove moving human in the environment and use [CAPE](https://github.com/pedropro/CAPE) plane detection to extract plane features. This system do not need GPU, I use a desktop computer with i76800k CPU to test my system, FPS of this system is about 24.
 
+Test video on TUM dataset: https://youtu.be/nfauXS6AWnk
+
 **Authors:** BZD
 
 <!-- ## License
