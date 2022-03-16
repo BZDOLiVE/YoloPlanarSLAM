@@ -63,7 +63,6 @@ void MapPlane::AddObservation(KeyFrame* pKF,size_t idx)
 
 void MapPlane::EraseObservation(KeyFrame* pKF)
 {
-    //WORKING ON
     bool bBad = false;
     {
         unique_lock<mutex> lock(mMutexFeatures);
@@ -163,7 +162,6 @@ void MapPlane::UpdatePointCloud(pcl::PointCloud<pcl::PointXYZRGB> inputPointClou
     return;
 }
 
-//Working on
 bool MapPlane::TransformPointCloud(const Eigen::Vector4d coefBefore, const Eigen::Vector4d coefAfter)
 {
     unique_lock<mutex> lock2(mGlobalMutex);

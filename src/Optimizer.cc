@@ -374,7 +374,6 @@ int Optimizer::PoseOptimization(Frame *pFrame)
 
 
     // Set Plane vertices
-    // WORKING ON
     const int M = pFrame->mnPlaneNum;
     vector<g2o::EdgePlane*> vpEdgesPlane;
     vector<size_t> vnIndexEdgePlane;
@@ -382,7 +381,6 @@ int Optimizer::PoseOptimization(Frame *pFrame)
     vnIndexEdgePlane.reserve(M);
 
     std::set<int> vnVertexId;
-    // WORKING ON
     if(!mInitFlag){
         mPlaneAngleInfo = 3282.8 / (ConfigFile::planeAngleInfo * ConfigFile::planeAngleInfo);
         mPlaneDistanceInfo = (ConfigFile::planeDistanceInfo * ConfigFile::planeDistanceInfo);
@@ -420,7 +418,7 @@ int Optimizer::PoseOptimization(Frame *pFrame)
                 e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(0)));
                 e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(pMP->mnId + 1)));
                 e->setMeasurement(Converter::toPlane3D(pFrame->mvPlaneCameraCoefficients[i].mPlaneCameraCoefficient));
-                //TODO
+                //Working on: test the weight of plane features
                 Eigen::Matrix3d Info;
                 Info << mPlaneAngleInfo, 0, 0,
                             0, mPlaneAngleInfo, 0,
@@ -430,7 +428,6 @@ int Optimizer::PoseOptimization(Frame *pFrame)
 
                 g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
                 e->setRobustKernel(rk);
-                //TODO
                 rk->setDelta(mDeltaPlaneChi);
 
                 optimizer.addEdge(e);
@@ -999,17 +996,6 @@ void Optimizer::LocalBundleAdjustment(KeyFrame *pKF, bool* pbStopFlag, Map* pMap
             pMPi->EraseObservation(pKFi);
         }
     }
-
-    // TODO: Erase outlier plane
-    // if(!vToErasePlane.empty()){
-    //     for(size_t i=0;i<vToErasePlane.size();i++)
-    //     {
-    //         KeyFrame* pKFi = vToErasePlane[i].first;
-    //         MapPlane* pMPi = vToErasePlane[i].second;
-    //         pKFi->EraseMapPlaneMatch(pMPi);
-    //         pMPi->EraseObservation(pKFi);
-    //     }
-    // }
 
     // Recover optimized data
 

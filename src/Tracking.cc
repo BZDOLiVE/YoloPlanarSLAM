@@ -1105,7 +1105,6 @@ bool Tracking::NeedNewKeyFrame()
     // Local Mapping accept keyframes?
     bool bLocalMappingIdle = mpLocalMapper->AcceptKeyFrames();
 
-    // WORKING ON
     // Check the current frame whether has a new plane
     for(int i = 0; i < mCurrentFrame.mvpMapPlanes.size(); i++){
         if(mCurrentFrame.mvpMapPlanes[i] == nullptr && mCurrentFrame.mvbPlaneOutlier[i] == false){
@@ -1196,36 +1195,6 @@ bool Tracking::NeedNewKeyFrame()
     else
         return false;
 
-
-    // WORKING ON
-    // Check the current frame whether has a new plane
-    // for(int i = 0; i < mCurrentFrame.mvpMapPlanes.size(); i++){
-    //     if(mCurrentFrame.mvpMapPlanes[i] == nullptr && mCurrentFrame.mvbPlaneOutlier[i] == false){
-    //         mCurrentFrame.mbNewPlane = true;
-    //         break;
-    //     }
-    // }
-    // if(mCurrentFrame.mbNewPlane){
-    //     // If the mapping accepts keyframes, insert keyframe.
-    //     // Otherwise send a signal to interrupt BA
-    //     if(bLocalMappingIdle)
-    //     {
-    //         return true;
-    //     }
-    //     else
-    //     {
-    //         mpLocalMapper->InterruptBA();
-    //         if(mSensor!=System::MONOCULAR)
-    //         {
-    //             if(mpLocalMapper->KeyframesInQueue()<3)
-    //                 return true;
-    //             else
-    //                 return false;
-    //         }
-    //         else
-    //             return false;
-    //     }
-    // }
 
     return false;
 }

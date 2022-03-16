@@ -133,6 +133,7 @@ inline Plane3D operator*(const Isometry3D& t, const Plane3D& plane){
     if(v2(3) < 0.0){
         v2 = -v2;
     }
+    
     //std::cout << "multi after: " << v2 << std::endl;
 
     // -----------------------------------------------
